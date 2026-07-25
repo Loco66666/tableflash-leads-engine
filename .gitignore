@@ -1,0 +1,22 @@
+# Dependencies and virtual environments
+node_modules/
+.venv/
+
+# Build and test output
+dist/
+coverage/
+.pytest_cache/
+*.egg-info/
+__pycache__/
+*.py[cod]
+
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+
+# Editor and operating system files
+.vscode/
+.idea/
+*.log
+.DS_Store

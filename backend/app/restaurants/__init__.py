@@ -1,0 +1,1 @@
+"""Minimal restaurant API module."""

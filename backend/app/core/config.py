@@ -10,6 +10,8 @@ class Settings(BaseSettings):
     api_v1_prefix: str = "/api/v1"
     database_url: str = "postgresql+psycopg://tfle:tfle@localhost:5432/tfle"
     cors_origins: str = "http://localhost:5173"
+    jwt_secret_key: str = "development-only-change-me-use-a-long-random-secret"
+    jwt_access_token_expire_minutes: int = 480
 
     @cached_property
     def cors_origin_list(self) -> list[str]:

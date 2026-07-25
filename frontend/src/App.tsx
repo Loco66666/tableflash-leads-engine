@@ -1,9 +1,20 @@
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
+
+import { ProtectedRoute } from './auth/ProtectedRoute'
+import { DashboardPage } from './pages/DashboardPage'
+import { LoginPage } from './pages/LoginPage'
+
 function App() {
   return (
-    <main className="app-shell">
-      <h1>TableFlash Leads Engine</h1>
-      <p>Socle technique initialisé.</p>
-    </main>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/login" element={<LoginPage />} />
+        <Route element={<ProtectedRoute />}>
+          <Route path="/dashboard" element={<DashboardPage />} />
+        </Route>
+        <Route path="*" element={<Navigate to="/dashboard" replace />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 

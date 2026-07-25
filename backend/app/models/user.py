@@ -19,8 +19,17 @@ class User(UUIDTimestampMixin, Base):
     full_name: Mapped[str] = mapped_column(String(255), nullable=False)
     email: Mapped[str] = mapped_column(String(320), nullable=False, unique=True)
     password_hash: Mapped[str] = mapped_column(String(255), nullable=False)
+
     role: Mapped[UserRole] = mapped_column(
-        Enum(UserRole, name="user_role"), nullable=False, default=UserRole.COMMERCIAL
+        Enum(
+            UserRole,
+            name="user_role",
+            values_callable=lambda enum_cls: [e.value for e in enum_cls],
+        ),
+        nullable=False,
+        default=UserRole.COMMERCIAL,
     )
 
-    assigned_leads: Mapped[list["Lead"]] = relationship(back_populates="assigned_user")
+    assigned_leads: Mapped[list["Lead"]] = relationship(
+        back_populates="assigned_user"
+    )
